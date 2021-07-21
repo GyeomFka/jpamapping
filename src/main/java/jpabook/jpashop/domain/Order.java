@@ -19,7 +19,7 @@ public class Order {
     @Column(name="MEMBER_ID")
     private Long memberId; //누가 주문했는지의 MemberId <-> Member
 
-    private Member member; //-> 객체지향적인 설계
+//    private Member member; //-> 객체지향적인 설계
     //********************************************************************************
 
     private LocalDateTime orderDate; //ORDER_DATE, order_date ... ->Spring Boot에서는 기본 설정을 ORDER_DATE로 가지고간다 Java의 camelCase를 읽어서 uner_score로 가져간다.
@@ -42,7 +42,6 @@ public class Order {
     public void setMemberId(Long memberId) {
         this.memberId = memberId;
     }
-
     public LocalDateTime getOrderDate() {
         return orderDate;
     }
