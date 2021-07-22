@@ -1,9 +1,8 @@
 package jpabook.jpashop.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Member {
@@ -16,6 +15,10 @@ public class Member {
     private String city;
     private String street;
     private String zipcode;
+
+    //-> 굳이 양방향을 설계하고싶다 ? -> 이런식으로 설계를 하면된다. -> 양방향 설계는 지양하는것이 좋다.
+    //    @OneToMany(mappedBy = "member")
+    //    private List<Order> orders = new ArrayList<>();
 
     public Long getId() {
         return id;

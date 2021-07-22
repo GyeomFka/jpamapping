@@ -1,9 +1,10 @@
 package jpabook.jpashop.teamDomain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import jpabook.jpashop.domain.Member;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class  Team {
@@ -14,6 +15,9 @@ public class  Team {
     private Long id;
 
     private String name;
+
+    @OneToMany(mappedBy = "team")
+    private List<TeamMember> members = new ArrayList<>();//관례사항 : ADD할때 NullPointerException이 발생하지 않도록!
 
     public Long getId() {
         return id;
@@ -29,5 +33,13 @@ public class  Team {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<TeamMember> getMembers() {
+        return members;
+    }
+
+    public void setMembers(List<TeamMember> members) {
+        this.members = members;
     }
 }

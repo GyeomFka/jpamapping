@@ -17,16 +17,19 @@ public class JpaMain {
 
         try {
             //객체를 Table에 맞춰서 모델링 할때의 문제점.
-            Team team = new Team();
-            team.setName("TeamA");
-            em.persist(team);
-
             TeamMember teamMember = new TeamMember();
             teamMember.setUsername("member1");
-            teamMember.setTeam(team);
-            //teamMember.setTeamId(team.getId());//이게 참 애매하다... 객체지향 적인 느낌이 나질 않는다.
             em.persist(teamMember);
 
+            Team team = new Team();
+            team.setName("TeamA");
+            team.getMembers().add(teamMember); //
+            em.persist(team);
+
+            //teamMember.setTeam(team);
+            //teamMember.setTeamId(team.getId());//이게 참 애매하다... 객체지향 적인 느낌이 나질 않는다.
+            em.flush();
+            em.clear();
             /*
             * SELECT * FROM TEAMMEMBER M
              * JOIN TEAM T ON M.TEAM_ID = T.TEAM_ID //ANSI 표준문법법
